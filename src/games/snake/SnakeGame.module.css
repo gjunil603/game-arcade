@@ -1,0 +1,202 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.gameArea {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.boardWrapper {
+  position: relative;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  touch-action: none;
+}
+
+.board {
+  display: block;
+  max-width: min(100%, 400px);
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: rgba(15, 17, 23, 0.85);
+  backdrop-filter: blur(4px);
+}
+
+.overlayTitle {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.overlayHint {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.overlayActions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.primaryButton {
+  background: var(--accent);
+  color: white;
+}
+
+.primaryButton:hover {
+  background: var(--accent-hover);
+}
+
+.secondaryButton {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.secondaryButton:hover {
+  background: var(--surface-hover);
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 140px;
+}
+
+.statBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.controlsHelp {
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.controlsHelp p {
+  margin: 0.25rem 0;
+}
+
+.touchControls {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  width: 100%;
+  max-width: 240px;
+}
+
+.touchButton {
+  padding: 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1.25rem;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touchButton:active {
+  background: var(--surface-hover);
+}
+
+.touchUp {
+  grid-column: 2;
+}
+
+.touchLeft {
+  grid-column: 1;
+}
+
+.touchRight {
+  grid-column: 3;
+}
+
+.touchDown {
+  grid-column: 2;
+}
+
+.touchPause {
+  grid-column: 1 / -1;
+  font-size: 1rem;
+}
+
+@media (max-width: 640px) {
+  .gameArea {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .sidebar {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .statBlock {
+    flex: 1;
+    min-width: 90px;
+  }
+
+  .controlsHelp {
+    display: none;
+  }
+
+  .touchControls {
+    display: grid;
+  }
+}
