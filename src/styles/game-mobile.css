@@ -1,4 +1,4 @@
-/* Shared mobile layout — no scroll, buttons always visible, correct aspect ratios */
+/* Shared mobile layout — no scroll, buttons visible, correct aspect ratios */
 @media (max-width: 640px) {
   .game-shell {
     flex: 1;
@@ -56,7 +56,6 @@
   }
 
   .game-board-wrap {
-    container-type: size;
     flex: 1;
     min-height: 0;
     width: 100%;
@@ -66,30 +65,40 @@
     overflow: hidden;
   }
 
-  /* Size from container — keeps aspect ratio, never stretches canvas */
   .game-board {
     display: block;
     height: auto !important;
-    width: auto !important;
     max-width: 100%;
-    max-height: 100%;
-    aspect-ratio: unset !important;
+  }
+
+  /* svh-based sizing — avoids container-query zero-size bugs */
+  .game-shell--tetris {
+    --board-w: min(78vw, calc((100svh - 13.5rem - env(safe-area-inset-bottom, 0px)) / 2));
   }
 
   .game-shell--tetris .game-board {
-    width: min(100cqw, 50cqh) !important;
+    width: var(--board-w) !important;
     aspect-ratio: 1 / 2;
   }
 
-  .game-shell--snake .game-board,
-  .game-shell--game2048 .game-board {
-    width: min(100cqw, 100cqh) !important;
+  .game-shell--snake,
+  .game-shell--breakout {
+    --board-w: min(82vw, calc((100svh - 13.5rem - env(safe-area-inset-bottom, 0px)) * 0.75));
+  }
+
+  .game-shell--snake .game-board {
+    width: min(82vw, calc(100svh - 13.5rem - env(safe-area-inset-bottom, 0px))) !important;
     aspect-ratio: 1;
   }
 
   .game-shell--breakout .game-board {
-    width: min(100cqw, 75cqh) !important;
+    width: var(--board-w) !important;
     aspect-ratio: 3 / 4;
+  }
+
+  .game-shell--game2048 .game-board {
+    width: min(88vw, calc(100svh - 7rem - env(safe-area-inset-bottom, 0px))) !important;
+    aspect-ratio: 1;
   }
 
   .game-touch {
