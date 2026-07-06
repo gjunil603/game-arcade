@@ -116,7 +116,7 @@ export function BreakoutGame() {
   return (
     <div className={`${styles.container} game-shell game-shell--breakout`}>
       <div className={`${styles.gameArea} game-area`}>
-        <div className={styles.boardWrapper} ref={boardWrapperRef}>
+        <div className={`${styles.boardWrapper} game-board-wrap`} ref={boardWrapperRef}>
           <canvas ref={canvasRef} className={`${styles.board} game-board`} aria-label="브레이크아웃 보드" />
           {showPause && (
             <div className={styles.overlay}>
@@ -151,6 +151,41 @@ export function BreakoutGame() {
               </p>
             </div>
           )}
+          {!showLevelClear && !showGameOver && (
+            <div className={`${styles.touchControls} game-touch game-touch-overlay game-touch--breakout`}>
+              <button
+                type="button"
+                className={`${styles.touchButton} touch-btn`}
+                onPointerDown={() => dispatch('moveLeft')}
+                onPointerUp={() => dispatch('moveLeftEnd')}
+                onPointerLeave={() => dispatch('moveLeftEnd')}
+                onPointerCancel={() => dispatch('moveLeftEnd')}
+              >
+                ←
+              </button>
+              <button
+                type="button"
+                className={`${styles.touchButton} touch-btn`}
+                onPointerDown={() => dispatch('moveRight')}
+                onPointerUp={() => dispatch('moveRightEnd')}
+                onPointerLeave={() => dispatch('moveRightEnd')}
+                onPointerCancel={() => dispatch('moveRightEnd')}
+              >
+                →
+              </button>
+              <button
+                type="button"
+                className={`${styles.touchButton} ${styles.touchLaunch} touch-btn touch-launch`}
+                onClick={() => {
+                  if (hud.status === 'ready') dispatch('launch');
+                  else if (hud.status === 'playing') dispatch('pause');
+                  else if (hud.status === 'paused') dispatch('pause');
+                }}
+              >
+                {hud.status === 'ready' ? '🚀' : hud.status === 'paused' ? '▶' : '⏸'}
+              </button>
+            </div>
+          )}
         </div>
 
         <aside className={`${styles.sidebar} game-sidebar`}>
@@ -178,42 +213,6 @@ export function BreakoutGame() {
           </div>
         </aside>
       </div>
-
-      {!showLevelClear && !showGameOver && (
-      <div className={`${styles.touchControls} game-touch`}>
-        <button
-          type="button"
-          className={`${styles.touchButton} touch-btn`}
-          onPointerDown={() => dispatch('moveLeft')}
-          onPointerUp={() => dispatch('moveLeftEnd')}
-          onPointerLeave={() => dispatch('moveLeftEnd')}
-          onPointerCancel={() => dispatch('moveLeftEnd')}
-        >
-          ←
-        </button>
-        <button
-          type="button"
-          className={`${styles.touchButton} touch-btn`}
-          onPointerDown={() => dispatch('moveRight')}
-          onPointerUp={() => dispatch('moveRightEnd')}
-          onPointerLeave={() => dispatch('moveRightEnd')}
-          onPointerCancel={() => dispatch('moveRightEnd')}
-        >
-          →
-        </button>
-        <button
-          type="button"
-          className={`${styles.touchButton} ${styles.touchLaunch} touch-btn`}
-          onClick={() => {
-            if (hud.status === 'ready') dispatch('launch');
-            else if (hud.status === 'playing') dispatch('pause');
-            else if (hud.status === 'paused') dispatch('pause');
-          }}
-        >
-          {hud.status === 'ready' ? '🚀 발사' : hud.status === 'paused' ? '▶ 계속' : '⏸ 일시정지'}
-        </button>
-      </div>
-      )}
     </div>
   );
 }

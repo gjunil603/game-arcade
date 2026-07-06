@@ -70,7 +70,7 @@ export function Game2048() {
   return (
     <div className={`${styles.container} game-shell game-shell--game2048`}>
       <div className={`${styles.gameArea} game-area`}>
-        <div className={styles.boardWrapper} ref={boardWrapperRef}>
+        <div className={`${styles.boardWrapper} game-board-wrap`} ref={boardWrapperRef}>
           <canvas ref={canvasRef} className={`${styles.board} game-board`} aria-label="2048 보드" />
           {showWin && (
             <div className={styles.overlay}>

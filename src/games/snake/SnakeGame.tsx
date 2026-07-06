@@ -91,7 +91,7 @@ export function SnakeGame() {
   return (
     <div className={`${styles.container} game-shell game-shell--snake`}>
       <div className={`${styles.gameArea} game-area`}>
-        <div className={styles.boardWrapper} ref={boardWrapperRef}>
+        <div className={`${styles.boardWrapper} game-board-wrap`} ref={boardWrapperRef}>
           <canvas ref={canvasRef} className={`${styles.board} game-board`} aria-label="스네이크 보드" />
           {hud.paused && !hud.gameOver && (
             <div className={styles.overlay}>
@@ -117,6 +117,25 @@ export function SnakeGame() {
               </div>
             </div>
           )}
+          {!hud.gameOver && (
+            <div className={`${styles.touchControls} game-touch game-touch-overlay game-touch--snake`}>
+              <button type="button" className={`${styles.touchButton} ${styles.touchUp} touch-btn touch-up`} onClick={() => dispatch('up')}>
+                ↑
+              </button>
+              <button type="button" className={`${styles.touchButton} ${styles.touchLeft} touch-btn touch-left`} onClick={() => dispatch('left')}>
+                ←
+              </button>
+              <button type="button" className={`${styles.touchButton} ${styles.touchRight} touch-btn touch-right`} onClick={() => dispatch('right')}>
+                →
+              </button>
+              <button type="button" className={`${styles.touchButton} ${styles.touchDown} touch-btn touch-down`} onClick={() => dispatch('down')}>
+                ↓
+              </button>
+              <button type="button" className={`${styles.touchButton} ${styles.touchPause} touch-btn touch-pause`} onClick={() => dispatch('pause')}>
+                ⏸
+              </button>
+            </div>
+          )}
         </div>
 
         <aside className={`${styles.sidebar} game-sidebar`}>
@@ -138,24 +157,6 @@ export function SnakeGame() {
             <p>P / Esc 일시정지</p>
           </div>
         </aside>
-      </div>
-
-      <div className={`${styles.touchControls} game-touch`}>
-        <button type="button" className={`${styles.touchButton} ${styles.touchUp} touch-btn`} onClick={() => dispatch('up')}>
-          ↑
-        </button>
-        <button type="button" className={`${styles.touchButton} ${styles.touchLeft} touch-btn`} onClick={() => dispatch('left')}>
-          ←
-        </button>
-        <button type="button" className={`${styles.touchButton} ${styles.touchRight} touch-btn`} onClick={() => dispatch('right')}>
-          →
-        </button>
-        <button type="button" className={`${styles.touchButton} ${styles.touchDown} touch-btn`} onClick={() => dispatch('down')}>
-          ↓
-        </button>
-        <button type="button" className={`${styles.touchButton} ${styles.touchPause} touch-btn`} onClick={() => dispatch('pause')}>
-          ⏸ 일시정지
-        </button>
       </div>
     </div>
   );

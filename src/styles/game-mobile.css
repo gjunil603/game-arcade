@@ -26,23 +26,30 @@
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    gap: 0.5rem;
+    gap: 0.4rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .game-sidebar > * {
     flex: 1 1 0;
-    min-width: 4.5rem;
-    padding: 0.45rem 0.6rem;
+    min-width: 4rem;
+    padding: 0.4rem 0.5rem;
   }
 
   .game-sidebar > * span:last-child {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .game-sidebar .controls-help {
     display: none;
+  }
+
+  .game-board-wrap {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
   }
 
   .game-board {
@@ -54,38 +61,90 @@
   }
 
   .game-shell--tetris .game-board {
-    max-height: min(46dvh, 380px);
+    max-height: min(52dvh, 420px);
     aspect-ratio: 1 / 2;
   }
 
   .game-shell--snake .game-board,
   .game-shell--game2048 .game-board {
-    max-height: min(40dvh, 320px);
+    max-height: min(48dvh, 360px);
     aspect-ratio: 1;
   }
 
   .game-shell--breakout .game-board {
-    max-height: min(44dvh, 360px);
+    max-height: min(50dvh, 400px);
     aspect-ratio: 3 / 4;
   }
 
-  .game-touch {
+  /* Touch controls overlaid on board bottom — no extra scroll below */
+  .game-touch-overlay {
     display: grid !important;
-    position: sticky;
+    position: absolute;
+    left: 0;
+    right: 0;
     bottom: 0;
-    margin-top: auto;
-    flex-shrink: 0;
-    width: 100%;
-    max-width: 100%;
-    padding: 0.35rem 0;
-    padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
-    background: linear-gradient(to top, var(--bg) 70%, transparent);
-    z-index: 5;
+    z-index: 3;
+    gap: 0.35rem;
+    padding: 0.35rem 0.5rem;
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+    background: linear-gradient(to top, rgba(15, 17, 23, 0.96) 55%, transparent);
+    pointer-events: none;
+    touch-action: manipulation;
   }
 
-  .game-touch .touch-btn {
-    min-height: 2.75rem;
-    padding: 0.65rem;
-    font-size: 1.15rem;
+  .game-touch-overlay .touch-btn {
+    pointer-events: auto;
+    min-height: 2.4rem;
+    padding: 0.45rem;
+    font-size: 1.05rem;
+    background: rgba(26, 29, 39, 0.92);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    touch-action: manipulation;
+  }
+
+  .game-touch-overlay .touch-btn:active {
+    background: var(--surface-hover);
+  }
+
+  .game-touch--tetris {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 100%;
+  }
+
+  .game-touch--snake {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 11.5rem;
+    margin: 0 auto;
+  }
+
+  .game-touch--snake .touch-up {
+    grid-column: 2;
+  }
+
+  .game-touch--snake .touch-left {
+    grid-column: 1;
+  }
+
+  .game-touch--snake .touch-right {
+    grid-column: 3;
+  }
+
+  .game-touch--snake .touch-down {
+    grid-column: 2;
+  }
+
+  .game-touch--snake .touch-pause {
+    grid-column: 3;
+    font-size: 0.9rem;
+  }
+
+  .game-touch--breakout {
+    grid-template-columns: 1fr 1fr 1fr;
+    max-width: 100%;
+  }
+
+  .game-touch--breakout .touch-launch {
+    grid-column: auto;
   }
 }
