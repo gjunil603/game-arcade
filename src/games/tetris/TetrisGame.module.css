@@ -190,7 +190,11 @@
   }
 
   .touchControls {
-    display: grid;
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
   }
 
   .touchControls button:nth-child(1) {

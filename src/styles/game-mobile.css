@@ -1,0 +1,91 @@
+/* Shared mobile layout for in-game pages */
+@media (max-width: 640px) {
+  .game-shell {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    width: 100%;
+    min-height: 0;
+  }
+
+  .game-area {
+    flex: 0 1 auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .game-sidebar {
+    order: -1;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    gap: 0.5rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .game-sidebar > * {
+    flex: 1 1 0;
+    min-width: 4.5rem;
+    padding: 0.45rem 0.6rem;
+  }
+
+  .game-sidebar > * span:last-child {
+    font-size: 1.1rem;
+  }
+
+  .game-sidebar .controls-help {
+    display: none;
+  }
+
+  .game-board {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .game-shell--tetris .game-board {
+    max-height: min(46dvh, 380px);
+    aspect-ratio: 1 / 2;
+  }
+
+  .game-shell--snake .game-board,
+  .game-shell--game2048 .game-board {
+    max-height: min(40dvh, 320px);
+    aspect-ratio: 1;
+  }
+
+  .game-shell--breakout .game-board {
+    max-height: min(44dvh, 360px);
+    aspect-ratio: 3 / 4;
+  }
+
+  .game-touch {
+    display: grid !important;
+    position: sticky;
+    bottom: 0;
+    margin-top: auto;
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0.35rem 0;
+    padding-bottom: max(0.35rem, env(safe-area-inset-bottom));
+    background: linear-gradient(to top, var(--bg) 70%, transparent);
+    z-index: 5;
+  }
+
+  .game-touch .touch-btn {
+    min-height: 2.75rem;
+    padding: 0.65rem;
+    font-size: 1.15rem;
+  }
+}

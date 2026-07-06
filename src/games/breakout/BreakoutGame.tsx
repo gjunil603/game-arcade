@@ -114,10 +114,10 @@ export function BreakoutGame() {
   const showReady = hud.status === 'ready';
 
   return (
-    <div className={styles.container}>
-      <div className={styles.gameArea}>
+    <div className={`${styles.container} game-shell game-shell--breakout`}>
+      <div className={`${styles.gameArea} game-area`}>
         <div className={styles.boardWrapper} ref={boardWrapperRef}>
-          <canvas ref={canvasRef} className={styles.board} aria-label="브레이크아웃 보드" />
+          <canvas ref={canvasRef} className={`${styles.board} game-board`} aria-label="브레이크아웃 보드" />
           {showPause && (
             <div className={styles.overlay}>
               <p className={styles.overlayTitle}>일시정지</p>
@@ -153,24 +153,24 @@ export function BreakoutGame() {
           )}
         </div>
 
-        <aside className={styles.sidebar}>
-          <div className={styles.statBlock}>
+        <aside className={`${styles.sidebar} game-sidebar`}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>점수</span>
             <span className={styles.statValue}>{hud.score.toLocaleString()}</span>
           </div>
-          <div className={styles.statBlock}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>레벨</span>
             <span className={styles.statValue}>{hud.level}</span>
           </div>
-          <div className={styles.statBlock}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>생명</span>
             <span className={styles.statValue}>{'❤'.repeat(hud.lives) || '0'}</span>
           </div>
-          <div className={styles.statBlock}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>최고</span>
             <span className={styles.statValue}>{hud.highScore.toLocaleString()}</span>
           </div>
-          <div className={styles.controlsHelp}>
+          <div className={`${styles.controlsHelp} controls-help`}>
             <p>← → / A D 패들 이동</p>
             <p>Space 공 발사</p>
             <p>P / Esc 일시정지</p>
@@ -180,10 +180,10 @@ export function BreakoutGame() {
       </div>
 
       {!showLevelClear && !showGameOver && (
-      <div className={styles.touchControls}>
+      <div className={`${styles.touchControls} game-touch`}>
         <button
           type="button"
-          className={styles.touchButton}
+          className={`${styles.touchButton} touch-btn`}
           onPointerDown={() => dispatch('moveLeft')}
           onPointerUp={() => dispatch('moveLeftEnd')}
           onPointerLeave={() => dispatch('moveLeftEnd')}
@@ -193,7 +193,7 @@ export function BreakoutGame() {
         </button>
         <button
           type="button"
-          className={styles.touchButton}
+          className={`${styles.touchButton} touch-btn`}
           onPointerDown={() => dispatch('moveRight')}
           onPointerUp={() => dispatch('moveRightEnd')}
           onPointerLeave={() => dispatch('moveRightEnd')}
@@ -203,7 +203,7 @@ export function BreakoutGame() {
         </button>
         <button
           type="button"
-          className={`${styles.touchButton} ${styles.touchLaunch}`}
+          className={`${styles.touchButton} ${styles.touchLaunch} touch-btn`}
           onClick={() => {
             if (hud.status === 'ready') dispatch('launch');
             else if (hud.status === 'playing') dispatch('pause');

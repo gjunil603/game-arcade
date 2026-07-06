@@ -185,8 +185,4 @@
   .controlsHelp {
     display: none;
   }
-
-  .touchControls {
-    display: grid;
-  }
 }

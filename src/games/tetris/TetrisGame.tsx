@@ -85,10 +85,10 @@ export function TetrisGame() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.gameArea}>
+    <div className={`${styles.container} game-shell game-shell--tetris`}>
+      <div className={`${styles.gameArea} game-area`}>
         <div className={styles.boardWrapper}>
-          <canvas ref={canvasRef} className={styles.board} aria-label="테트리스 보드" />
+          <canvas ref={canvasRef} className={`${styles.board} game-board`} aria-label="테트리스 보드" />
           {hud.paused && !hud.gameOver && (
             <div className={styles.overlay}>
               <p className={styles.overlayTitle}>일시정지</p>
@@ -110,24 +110,24 @@ export function TetrisGame() {
           )}
         </div>
 
-        <aside className={styles.sidebar}>
-          <div className={styles.statBlock}>
+        <aside className={`${styles.sidebar} game-sidebar`}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>점수</span>
             <span className={styles.statValue}>{hud.score.toLocaleString()}</span>
           </div>
-          <div className={styles.statBlock}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>레벨</span>
             <span className={styles.statValue}>{hud.level}</span>
           </div>
-          <div className={styles.statBlock}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>줄</span>
             <span className={styles.statValue}>{hud.lines}</span>
           </div>
-          <div className={styles.nextBlock}>
+          <div className={`${styles.nextBlock} next-block`}>
             <span className={styles.statLabel}>다음</span>
             <canvas ref={nextCanvasRef} className={styles.nextCanvas} aria-label="다음 블록" />
           </div>
-          <div className={styles.controlsHelp}>
+          <div className={`${styles.controlsHelp} controls-help`}>
             <p>← → 이동</p>
             <p>↑ 회전</p>
             <p>↓ 소프트 드롭</p>
@@ -137,23 +137,23 @@ export function TetrisGame() {
         </aside>
       </div>
 
-      <div className={styles.touchControls}>
-        <button type="button" className={styles.touchButton} onClick={() => dispatch('moveLeft')}>
+      <div className={`${styles.touchControls} game-touch`}>
+        <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('moveLeft')}>
           ←
         </button>
-        <button type="button" className={styles.touchButton} onClick={() => dispatch('rotate')}>
+        <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('rotate')}>
           ↻
         </button>
-        <button type="button" className={styles.touchButton} onClick={() => dispatch('moveRight')}>
+        <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('moveRight')}>
           →
         </button>
-        <button type="button" className={styles.touchButton} onClick={() => dispatch('softDrop')}>
+        <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('softDrop')}>
           ↓
         </button>
-        <button type="button" className={styles.touchButton} onClick={() => dispatch('hardDrop')}>
+        <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('hardDrop')}>
           ⬇
         </button>
-        <button type="button" className={styles.touchButton} onClick={() => dispatch('pause')}>
+        <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('pause')}>
           ⏸
         </button>
       </div>

@@ -68,10 +68,10 @@ export function Game2048() {
   const showGameOver = hud.gameOver && !showWin;
 
   return (
-    <div className={styles.container}>
-      <div className={styles.gameArea}>
+    <div className={`${styles.container} game-shell game-shell--game2048`}>
+      <div className={`${styles.gameArea} game-area`}>
         <div className={styles.boardWrapper} ref={boardWrapperRef}>
-          <canvas ref={canvasRef} className={styles.board} aria-label="2048 보드" />
+          <canvas ref={canvasRef} className={`${styles.board} game-board`} aria-label="2048 보드" />
           {showWin && (
             <div className={styles.overlay}>
               <p className={styles.overlayTitle}>승리!</p>
@@ -106,16 +106,16 @@ export function Game2048() {
           )}
         </div>
 
-        <aside className={styles.sidebar}>
-          <div className={styles.statBlock}>
+        <aside className={`${styles.sidebar} game-sidebar`}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>점수</span>
             <span className={styles.statValue}>{hud.score.toLocaleString()}</span>
           </div>
-          <div className={styles.statBlock}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>최고</span>
             <span className={styles.statValue}>{hud.highScore.toLocaleString()}</span>
           </div>
-          <div className={styles.controlsHelp}>
+          <div className={`${styles.controlsHelp} controls-help`}>
             <p>↑↓←→ / WASD 이동</p>
             <p>모바일: 스와이프</p>
             <p>같은 숫자를 합쳐 2048!</p>

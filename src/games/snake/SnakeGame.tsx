@@ -89,10 +89,10 @@ export function SnakeGame() {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.gameArea}>
+    <div className={`${styles.container} game-shell game-shell--snake`}>
+      <div className={`${styles.gameArea} game-area`}>
         <div className={styles.boardWrapper} ref={boardWrapperRef}>
-          <canvas ref={canvasRef} className={styles.board} aria-label="스네이크 보드" />
+          <canvas ref={canvasRef} className={`${styles.board} game-board`} aria-label="스네이크 보드" />
           {hud.paused && !hud.gameOver && (
             <div className={styles.overlay}>
               <p className={styles.overlayTitle}>일시정지</p>
@@ -119,20 +119,20 @@ export function SnakeGame() {
           )}
         </div>
 
-        <aside className={styles.sidebar}>
-          <div className={styles.statBlock}>
+        <aside className={`${styles.sidebar} game-sidebar`}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>점수</span>
             <span className={styles.statValue}>{hud.score.toLocaleString()}</span>
           </div>
-          <div className={styles.statBlock}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>길이</span>
             <span className={styles.statValue}>{hud.snake.length}</span>
           </div>
-          <div className={styles.statBlock}>
+          <div className={`${styles.statBlock} stat-block`}>
             <span className={styles.statLabel}>최고</span>
             <span className={styles.statValue}>{hud.highScore.toLocaleString()}</span>
           </div>
-          <div className={styles.controlsHelp}>
+          <div className={`${styles.controlsHelp} controls-help`}>
             <p>↑↓←→ / WASD 이동</p>
             <p>모바일: 스와이프</p>
             <p>P / Esc 일시정지</p>
@@ -140,20 +140,20 @@ export function SnakeGame() {
         </aside>
       </div>
 
-      <div className={styles.touchControls}>
-        <button type="button" className={`${styles.touchButton} ${styles.touchUp}`} onClick={() => dispatch('up')}>
+      <div className={`${styles.touchControls} game-touch`}>
+        <button type="button" className={`${styles.touchButton} ${styles.touchUp} touch-btn`} onClick={() => dispatch('up')}>
           ↑
         </button>
-        <button type="button" className={`${styles.touchButton} ${styles.touchLeft}`} onClick={() => dispatch('left')}>
+        <button type="button" className={`${styles.touchButton} ${styles.touchLeft} touch-btn`} onClick={() => dispatch('left')}>
           ←
         </button>
-        <button type="button" className={`${styles.touchButton} ${styles.touchRight}`} onClick={() => dispatch('right')}>
+        <button type="button" className={`${styles.touchButton} ${styles.touchRight} touch-btn`} onClick={() => dispatch('right')}>
           →
         </button>
-        <button type="button" className={`${styles.touchButton} ${styles.touchDown}`} onClick={() => dispatch('down')}>
+        <button type="button" className={`${styles.touchButton} ${styles.touchDown} touch-btn`} onClick={() => dispatch('down')}>
           ↓
         </button>
-        <button type="button" className={`${styles.touchButton} ${styles.touchPause}`} onClick={() => dispatch('pause')}>
+        <button type="button" className={`${styles.touchButton} ${styles.touchPause} touch-btn`} onClick={() => dispatch('pause')}>
           ⏸ 일시정지
         </button>
       </div>
