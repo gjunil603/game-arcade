@@ -56,16 +56,18 @@
   }
 
   .gameLayout {
-    height: 100vh;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
     height: 100svh;
-    height: 100dvh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
   }
 
   .gameHeader {
-    padding: 0.45rem 0.75rem;
+    padding: 0.4rem 0.75rem;
     flex-shrink: 0;
   }
 
@@ -79,7 +81,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 0.25rem 0.5rem;
-    padding-bottom: max(0.25rem, env(safe-area-inset-bottom, 0px));
+    padding: 0.2rem 0.5rem;
+    padding-bottom: max(0.2rem, env(safe-area-inset-bottom, 0px));
   }
 }

@@ -3,22 +3,24 @@
   .game-shell {
     flex: 1;
     min-height: 0;
+    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    gap: 0.35rem;
+    gap: 0.35rem !important;
     width: 100%;
     max-width: 100%;
     margin: 0;
   }
 
   .game-area {
-    flex: 1;
+    flex: 1 1 auto;
     min-height: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.35rem;
+    justify-content: flex-start;
+    gap: 0.35rem !important;
     width: 100%;
   }
 
@@ -53,34 +55,56 @@
   }
 
   .game-board-wrap {
-    flex: 1;
+    flex: 0 1 auto;
     min-height: 0;
     width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
   }
 
+  /* Canvas buffer is fixed px — size the wrapper, then fill with 100% width/height */
   .game-board {
     display: block;
+    width: 100% !important;
+    height: 100% !important;
     max-width: 100% !important;
     max-height: 100% !important;
-    width: auto !important;
-    height: auto !important;
-    margin: 0 auto;
+    aspect-ratio: unset !important;
   }
 
-  .game-shell--tetris .game-board {
+  .game-shell--tetris {
+    --board-max-h: calc(100svh - 12.5rem - env(safe-area-inset-bottom, 0px));
+  }
+
+  .game-shell--snake,
+  .game-shell--breakout {
+    --board-max-h: calc(100svh - 12.5rem - env(safe-area-inset-bottom, 0px));
+  }
+
+  .game-shell--game2048 {
+    --board-max-h: calc(100svh - 6.5rem - env(safe-area-inset-bottom, 0px));
+  }
+
+  .game-shell--tetris .game-board-wrap {
+    width: min(100%, calc(var(--board-max-h) / 2));
+    height: var(--board-max-h);
     aspect-ratio: 1 / 2;
   }
 
-  .game-shell--snake .game-board,
-  .game-shell--game2048 .game-board {
+  .game-shell--snake .game-board-wrap,
+  .game-shell--game2048 .game-board-wrap {
+    width: min(100%, var(--board-max-h));
+    height: var(--board-max-h);
     aspect-ratio: 1;
   }
 
-  .game-shell--breakout .game-board {
+  .game-shell--breakout .game-board-wrap {
+    width: min(100%, calc(var(--board-max-h) * 0.75));
+    height: var(--board-max-h);
     aspect-ratio: 3 / 4;
   }
 
@@ -93,9 +117,9 @@
   }
 
   .game-touch .touch-btn {
-    min-height: 2.35rem;
-    padding: 0.4rem;
-    font-size: 1rem;
+    min-height: 2.2rem;
+    padding: 0.35rem;
+    font-size: 0.95rem;
     touch-action: manipulation;
   }
 
@@ -105,7 +129,7 @@
 
   .game-touch--snake {
     grid-template-columns: repeat(3, 1fr);
-    max-width: 12rem;
+    max-width: 11.5rem;
     margin: 0 auto;
   }
 
@@ -127,7 +151,7 @@
 
   .game-touch--snake .touch-pause {
     grid-column: 3;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .game-touch--breakout {
@@ -135,6 +159,6 @@
   }
 
   .game-touch--breakout .touch-launch {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 }

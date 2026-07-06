@@ -168,9 +168,15 @@
 }
 
 @media (max-width: 640px) {
+  .container {
+    gap: 0.35rem !important;
+  }
+
   .gameArea {
     flex-direction: column;
     align-items: center;
+    gap: 0.35rem !important;
+    flex-wrap: nowrap;
   }
 
   .sidebar {
