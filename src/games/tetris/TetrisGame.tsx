@@ -108,28 +108,6 @@ export function TetrisGame() {
               </div>
             </div>
           )}
-          {!hud.gameOver && (
-            <div className={`${styles.touchControls} game-touch game-touch-overlay game-touch--tetris`}>
-              <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('moveLeft')}>
-                ←
-              </button>
-              <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('rotate')}>
-                ↻
-              </button>
-              <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('moveRight')}>
-                →
-              </button>
-              <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('softDrop')}>
-                ↓
-              </button>
-              <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('hardDrop')}>
-                ⬇
-              </button>
-              <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('pause')}>
-                ⏸
-              </button>
-            </div>
-          )}
         </div>
 
         <aside className={`${styles.sidebar} game-sidebar`}>
@@ -158,6 +136,29 @@ export function TetrisGame() {
           </div>
         </aside>
       </div>
+
+      {!hud.gameOver && (
+        <div className={`${styles.touchControls} game-touch game-touch--tetris`}>
+          <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('moveLeft')}>
+            ←
+          </button>
+          <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('rotate')}>
+            ↻
+          </button>
+          <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('moveRight')}>
+            →
+          </button>
+          <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('softDrop')}>
+            ↓
+          </button>
+          <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('hardDrop')}>
+            ⬇
+          </button>
+          <button type="button" className={`${styles.touchButton} touch-btn`} onClick={() => dispatch('pause')}>
+            ⏸
+          </button>
+        </div>
+      )}
     </div>
   );
 }
