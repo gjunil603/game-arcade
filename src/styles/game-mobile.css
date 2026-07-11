@@ -101,6 +101,11 @@
     aspect-ratio: 1;
   }
 
+  .game-shell--flappy .game-board {
+    width: min(58vw, calc((100svh - 12.5rem - env(safe-area-inset-bottom, 0px)) * 9 / 16)) !important;
+    aspect-ratio: 9 / 16;
+  }
+
   .game-touch {
     display: grid !important;
     width: 100%;
@@ -153,5 +158,9 @@
 
   .game-touch--breakout .touch-launch {
     font-size: 0.8rem;
+  }
+
+  .game-touch--flappy {
+    grid-template-columns: 1fr;
   }
 }

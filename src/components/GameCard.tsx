@@ -18,7 +18,9 @@ export function GameCard({ game }: GameCardProps) {
               ? '🏓'
               : game.id === '2048'
                 ? '🔢'
-                : '🎮'}
+                : game.id === 'flappy'
+                  ? '🐦'
+                  : '🎮'}
       </div>
       <div className={styles.content}>
         <h2 className={styles.title}>{game.title}</h2>

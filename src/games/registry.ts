@@ -1,4 +1,5 @@
 import { BreakoutGame } from './breakout/BreakoutGame';
+import { FlappyGame } from './flappy/FlappyGame';
 import { Game2048 } from './game2048/Game2048';
 import { SnakeGame } from './snake/SnakeGame';
 import { TetrisGame } from './tetris/TetrisGame';
@@ -28,6 +29,12 @@ export const games: GameDefinition[] = [
     title: '2048',
     description: '같은 숫자를 합쳐 2048 타일을 만드세요!',
     component: Game2048,
+  },
+  {
+    id: 'flappy',
+    title: '플래피 버드',
+    description: '탭으로 날아올라 파이프 사이를 통과하세요!',
+    component: FlappyGame,
   },
 ];
 
